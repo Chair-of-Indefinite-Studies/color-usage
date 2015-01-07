@@ -79,5 +79,39 @@ describe('color', function(){
 		expect(entries).toEqual(['red', 'black']);
 	    });
 	});
+
+	describe('register', function(){
+	    it('should notify of a registration', function(){
+		var notified = false;
+		usage.on('registered', function(){ notified = true; });
+
+		usage.register('black');
+
+		expect(notified).toBeTruthy();
+	    });
+
+	    it('notification should pass entry, index and usage', function(){
+		var actualEntry;
+		var actualIndex;
+		var actualUsage;
+		usage.on('registered', function(entry, index, usage){
+		    actualEntry = entry;
+		    actualIndex = index;
+		    actualUsage = usage;
+		});
+
+		[
+		    { 'expectedColor': 'black', 'expectedIndex': 0, 'expectedUsage': 1 },
+		    { 'expectedColor': 'black', 'expectedIndex': 0, 'expectedUsage': 2 },
+		    { 'expectedColor': 'red', 'expectedIndex': 1, 'expectedUsage': 1 },
+		].forEach(function(data){
+		    usage.register(data.expectedColor);
+
+		    expect(actualEntry).toBe(data.expectedColor);
+		    expect(actualIndex).toBe(data.expectedIndex);
+		    expect(actualUsage).toBe(data.expectedUsage);
+		});
+	    });
+	});
     });
 });

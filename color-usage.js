@@ -1,4 +1,4 @@
-;(function(color, undefined){
+;(function(ns, color, undefined){
     "use strict";
 
     var TrackRecord = function(index){
@@ -18,12 +18,16 @@
     };
 
     var Model = color.Usage = function(){
+	ns.Observable.call(this);
 	this.count = 0;
 	this.trackedEntries = {};
     };
+    Model.prototype = Object.create(ns.Observable.prototype);
+    Model.prototype.constructor = Model;
     Model.prototype.register = function(entry){
 	var record = this.trackedEntries[entry] = (this.trackedEntries[entry] || new TrackRecord(this.count++));
 	record.incrementUsage();
+	this.signal('registered', entry, record.index, record.usage);
 
     };
     Model.prototype.entries = function(sorter){
@@ -33,4 +37,4 @@
 	    .sort(sorter)
 	    .map(toEntry);
     };
-})(window.color = window.color || {})
+})(ns, window.color = window.color || {})
