@@ -12,6 +12,8 @@
     "spec",
     "package.json",
     "gulpFile.js"
+    "index.html",
+    "application.js"
   ],
   "dependencies": {
     "cois-observable": "~1.0.0"
