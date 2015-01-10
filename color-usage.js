@@ -37,4 +37,29 @@
 	    .sort(sorter)
 	    .map(toEntry);
     };
+
+    var View = color.UsageView = function(model, container, callback){
+	this.model = model;
+	this.container = container;
+	this.callback = callback || function(){ /* do nothing */ };
+	this.registeredColors = {};
+	this.model.on('registered', this.register.bind(this));
+	this.initialize();
+    };
+    View.prototype.register = function(entry, index, usage){
+	if (!this.registeredColors[entry]) {
+	    var element = this.registeredColors[entry] = document.createElement('span');
+	    element.setAttribute('data-entry', entry);
+	    this.container.appendChild(element);
+	    this.callback(element);
+	}
+	element = this.registeredColors[entry];
+	element.setAttribute('data-index', index);
+	element.setAttribute('data-usage', usage);
+    };
+    View.prototype.initialize = function(){
+	this.model.entries(function(entry, index){
+	    this.register(entry, index, 1);
+	}.bind(this));
+    };
 })(ns, window.color = window.color || {})
