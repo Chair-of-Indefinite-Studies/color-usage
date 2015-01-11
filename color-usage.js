@@ -50,6 +50,8 @@
 	if (!this.registeredColors[entry]) {
 	    var element = this.registeredColors[entry] = document.createElement('span');
 	    element.setAttribute('data-entry', entry);
+	    element.setAttribute('data-index', index);
+	    element.setAttribute('data-usage', usage);
 	    this.container.appendChild(element);
 	    this.callback(element);
 	}
