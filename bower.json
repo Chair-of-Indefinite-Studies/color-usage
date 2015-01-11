@@ -1,5 +1,5 @@
 {
-  "name": "color-usage",
+  "name": "cois-color-usage",
   "version": "1.0.0",
   "license": "MIT",
   "description": "Keep track of the colors used in a pixel-editor",
@@ -11,7 +11,7 @@
     "SpecRunner.html",
     "spec",
     "package.json",
-    "gulpFile.js"
+    "gulpFile.js",
     "index.html",
     "application.js"
   ],
