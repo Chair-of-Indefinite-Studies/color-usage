@@ -1,6 +1,6 @@
 {
   "name": "cois-color-usage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "description": "Keep track of the colors used in a pixel-editor",
   "main": "color-usage.js",
