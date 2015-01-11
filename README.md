@@ -46,4 +46,12 @@ event with the following arguments
 
 ### entries
 
-Returns all registered entries
+Returns all registered entries.
+
+* **sorter** an optional sorter can be provided. It should be a
+  function that accepts two objects representing the entries. The
+  objects have the following properties
+
+1. `entry` the color registered.
+2. `index` the index the entry got.
+3. `usage` how often the entry was registered.
